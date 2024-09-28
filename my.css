@@ -1,0 +1,155 @@
+.nav{
+    height: 70px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    margin:auto;
+}
+.nav .logo img{
+    width: 100px;
+}
+.nav .nav_btn a{
+    text-decoration: none;
+    padding-left: 20px;
+    padding-right: 20px;
+    color:black;
+}
+h1 { margin: 40px 0px; }
+.breadcrumb-item+.breadcrumb-item::before { content: ">"; }
+.dropdown{
+position : relative;
+display : inline-block;
+}
+
+.dropbtn_icon{
+font-family : 'Material Icons';
+}
+.dropbtn{
+border : 1px solid rgb(37, 37, 37);
+border-radius : 4px;
+background-color: #f5f5f5;
+font-weight: 400;
+color : rgb(37, 37, 37);
+padding : 12px;
+width :200px;
+text-align: left;
+cursor : pointer;
+font-size : 12px;
+}
+.dropdown-content{
+display : none;
+position : absolute;
+z-index : 1;
+font-weight: 400;
+background-color: #f9f9f9;
+min-width : 200px;
+}
+
+.dropdown-content a{
+display : block;
+text-decoration : none;
+color : rgb(37, 37, 37);
+font-size: 12px;
+padding : 12px 20px;
+}
+
+.dropdown-content a:hover{
+background-color : #ececec
+}
+
+.dropdown:hover .dropdown-content {
+display: block;
+}
+
+.table a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.table a:hover {
+    text-decoration: underline;
+    color: #ffc107;
+}
+
+.poster-container {
+position: relative;
+}
+
+.movie-poster {
+display: none;
+position: absolute;
+top: -150px;
+left: -1000px;
+width: 150px;
+height: 200px;
+border: 1px solid #ccc;
+z-index: 10;
+}
+
+.movie-row:hover .movie-poster {
+display: block;
+}
+
+.form-container {
+    background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 600px;
+            margin: 50px auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+.form-container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+body.add-background2 {
+    background-image: url('./img/theater.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+}
+
+body.add-background3 {
+    background-image: url('./img/black.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+}
+
+body {
+    padding: 20px;
+    background-image: url('./img/chicken2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+@media (max-width: 768px) {
+    .form-container {
+        padding: 15px;
+        max-width: 90%;
+    }
+
+    .nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav .nav_btn a {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    body {
+        background-image: url('./img/chick2.jpg');
+    }
+}
+
