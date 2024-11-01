@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictators CRUD</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Dictators CRUD with AJAX</h1>
+    
+    <section>
+        <h2 id="formTitle">Add New Dictator</h2>
+        <form id="addForm" onsubmit="submitData(event)">
+            <input type="hidden" id="editId">
+            <input type="text" id="addName" placeholder="Name" required>
+            <input type="text" id="addCountry" placeholder="Country" required>
+            <input type="text" id="addReign" placeholder="Reign Period" required>
+            <input type="text" id="addPolicy" placeholder="Famous Policy" required>
+            <input type="text" id="addKillCount" placeholder="Kill Count" required>
+            <button type="submit" id="submitButton">Add Dictator</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Dictators List</h2>
+        <button onclick="fetchData()">Refresh List</button>
+        <div id="dictatorList"></div>
+    </section>
+
+    <script>
+        let editingId = null;
+
+        function fetchData() {
+            fetch('http://localhost:3000/dictators')
+                .then(response => response.json())
+                .then(data => {
+                    const dictatorList = document.getElementById('dictatorList');
+                    dictatorList.innerHTML = '';
+                    data.forEach(d => {
+                        dictatorList.innerHTML += `
+                            <div id="dictator-${d.id}">
+                                <p><strong>${d.name}</strong> - ${d.country}</p>
+                                <p>Reign: ${d.reign_period}</p>
+                                <p>Policy: ${d.famous_policy}</p>
+                                <p>Kill Count: ${d.kill_count}</p>
+                                <button onclick="editData('${d.id}')">Edit</button>
+                                <button onclick="deleteData('${d.id}')">Delete</button>
+                            </div>
+                        `;
+                    });
+                });
+        }
+
+        function submitData(event) {
+            event.preventDefault();
+
+            const newData = {
+                id: editingId || new Date().getTime().toString(), //edit모드아니면 시간을 id로
+                name: document.getElementById('addName').value,
+                country: document.getElementById('addCountry').value,
+                reign_period: document.getElementById('addReign').value,
+                famous_policy: document.getElementById('addPolicy').value,
+                kill_count: document.getElementById('addKillCount').value
+            };
+
+            if (editingId) {
+                fetch(`http://localhost:3000/dictators/${editingId}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(newData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Dictator updated successfully');
+                    resetForm();
+                    fetchData();
+                });
+            } else {
+                fetch('http://localhost:3000/dictators', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(newData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Dictator added successfully');
+                    resetForm();
+                    fetchData();
+                });
+            }
+        }
+
+        function editData(id) {
+            editingId = id;
+            const dictatorDiv = document.getElementById(`dictator-${id}`);
+            if (!dictatorDiv) {
+                console.error('Dictator not found for ID:', id);
+                return;
+            }
+            
+            const name = dictatorDiv.querySelector('strong').innerText;
+            const country = dictatorDiv.querySelector('p:nth-of-type(1)').innerText.split(' - ')[1];
+            const reign = dictatorDiv.querySelector('p:nth-of-type(2)').innerText.split(': ')[1];
+            const policy = dictatorDiv.querySelector('p:nth-of-type(3)').innerText.split(': ')[1];
+            const killCount = dictatorDiv.querySelector('p:nth-of-type(4)').innerText.split(': ')[1];
+
+            document.getElementById('editId').value = id;
+            document.getElementById('addName').value = name;
+            document.getElementById('addCountry').value = country;
+            document.getElementById('addReign').value = reign;
+            document.getElementById('addPolicy').value = policy;
+            document.getElementById('addKillCount').value = killCount;
+
+            document.getElementById('formTitle').innerText = 'Edit Dictator';
+            document.getElementById('submitButton').innerText = 'Update Dictator';
+        }
+
+        function deleteData(id) {
+            if (confirm('Are you sure you want to delete this dictator?')) {
+                fetch(`http://localhost:3000/dictators/${id}`, {
+                    method: 'DELETE'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Dictator deleted successfully');
+                    fetchData();
+                });
+            }
+        }
+
+        function resetForm() {
+            editingId = null;
+            document.getElementById('editId').value = '';
+            document.getElementById('addName').value = '';
+            document.getElementById('addCountry').value = '';
+            document.getElementById('addReign').value = '';
+            document.getElementById('addPolicy').value = '';
+            document.getElementById('addKillCount').value = '';
+
+            document.getElementById('formTitle').innerText = 'Add New Dictator';
+            document.getElementById('submitButton').innerText = 'Add Dictator';
+        }
+
+        fetchData();
+    </script>
+</body>
+</html>

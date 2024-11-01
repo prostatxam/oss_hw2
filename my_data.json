@@ -1,0 +1,84 @@
+{
+    "dictators": [
+        {
+            "id": "1",
+            "name": "Genghis Khan",
+            "country": "Mongol Empire",
+            "reign_period": "1206-1227",
+            "famous_policy": "Empire expansion by any means",
+            "kill_count": "40 million"
+        },
+        {
+            "id": "2",
+            "name": "Adolf Hitler",
+            "country": "Germany",
+            "reign_period": "1933-1945",
+            "famous_policy": "Lebensraum",
+            "kill_count": "17 million"
+        },
+        {
+            "id": "3",
+            "name": "Joseph Stalin",
+            "country": "Soviet Union",
+            "reign_period": "1924-1953",
+            "famous_policy": "The Great Purge",
+            "kill_count": "20 million"
+        },
+        {
+            "id": "4",
+            "name": "Mao Zedong",
+            "country": "China",
+            "reign_period": "1949-1976",
+            "famous_policy": "Great Leap Forward",
+            "kill_count": "45 million"
+        },
+        {
+            "id": "5",
+            "name": "Pol Pot",
+            "country": "Cambodia",
+            "reign_period": "1975-1979",
+            "famous_policy": "Year Zero",
+            "kill_count": "2 million"
+        },
+        {
+            "id": "6",
+            "name": "Kim Jong-il",
+            "country": "North Korea",
+            "reign_period": "1994-2011",
+            "famous_policy": "Military-first policy",
+            "kill_count": "3 million (famine-related)"
+        },
+        {
+            "id": "7",
+            "name": "Saddam Hussein",
+            "country": "Iraq",
+            "reign_period": "1979-2003",
+            "famous_policy": "Use of chemical weapons",
+            "kill_count": "500,000"
+        },
+        {
+            "id": "8",
+            "name": "Benito Mussolini",
+            "country": "Italy",
+            "reign_period": "1922-1943",
+            "famous_policy": "Fascism and expansionism",
+            "kill_count": "400,000"
+        },
+        {
+            "id": "9",
+            "name": "Idi Amin",
+            "country": "Uganda",
+            "reign_period": "1971-1979",
+            "famous_policy": "Expulsion of Asian Ugandans",
+            "kill_count": "300,000"
+        },
+        {
+            "id": "10",
+            "name": "Francisco Franco",
+            "country": "Spain",
+            "reign_period": "1939-1975",
+            "famous_policy": "Authoritarian regime",
+            "kill_count": "200,000"
+        }
+    ]
+}
